@@ -28,6 +28,7 @@ public final class BundleContentsHelper {
     /** Check if the given item can still fit into this bundle. Works for empty bundles too. */
     public static boolean canFitItem(ItemStack bundleStack, ItemStack toInsert) {
         if (!isBundle(bundleStack) || toInsert.isEmpty()) return false;
+        if (!BundleContents.canItemBeInBundle(toInsert)) return false;
 
         BundleContents contents = getContents(bundleStack);
         Fraction currentWeight;

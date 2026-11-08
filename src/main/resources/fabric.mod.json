@@ -3,14 +3,23 @@
     "id": "better-bundle",
     "version": "${version}",
     "name": "Better Bundle",
-    "description": "Adds a side panel to the inventory for quick bundle access",
-    "authors": [],
-    "contact": {},
-    "license": "MIT",
+    "description": "Grouped bundle side panel, auto-deposit and matching rules for bundles",
+    "authors": [
+        "zeroowo24",
+        "doorAllOpen"
+    ],
+    "contact": {
+        "homepage": "https://github.com/doorAllOpen/BetterBundle",
+        "sources": "https://github.com/doorAllOpen/BetterBundle"
+    },
+    "license": "CC0-1.0",
     "environment": "client",
     "entrypoints": {
         "client": [
             "betterbundle.BetterBundleMod"
+        ],
+        "modmenu": [
+            "betterbundle.ModMenuIntegration"
         ]
     },
     "accessWidener": "better-bundle.accesswidener",
@@ -21,8 +30,12 @@
         }
     ],
     "depends": {
-        "fabricloader": ">=0.18.4",
-        "minecraft": ">=26.1",
+        "fabricloader": ">=0.19.0",
+        "minecraft": ">=26.3 <26.4",
+        "fabric-api": "*",
         "java": ">=25"
+    },
+    "suggests": {
+        "modmenu": "*"
     }
 }

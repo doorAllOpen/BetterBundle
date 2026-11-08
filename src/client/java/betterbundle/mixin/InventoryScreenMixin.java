@@ -1,6 +1,7 @@
 package betterbundle.mixin;
 
 import betterbundle.gui.BundlePanelRenderer;
+import betterbundle.util.BundleContentsHelper;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.world.inventory.Slot;
@@ -23,11 +24,16 @@ public abstract class InventoryScreenMixin {
                 self.imageHeight,
                 mouseX, mouseY);
 
-        // Enlarge the bundle icon for the hovered panel item
+        // Enlarge the bundle icon for the hovered panel item.
+        // The index can be stale after switching from a container menu (e.g. a chest) to the
+        // inventory menu, where it may be out of bounds. Never index the menu blindly.
         int bundleSlot = BundlePanelRenderer.getHoveredBundleSlot();
-        if (bundleSlot >= 0) {
+        if (bundleSlot >= 0
+                && BundlePanelRenderer.isEffectivelyVisible()
+                && bundleSlot < self.getMenu().slots.size()) {
             Slot slot = self.getMenu().getSlot(bundleSlot);
-            if (slot != null && slot.hasItem()) {
+            if (slot != null && slot.hasItem()
+                    && BundleContentsHelper.isBundle(slot.getItem())) {
                 int sx = self.leftPos + slot.x;
                 int sy = self.topPos + slot.y;
                 var pose = graphics.pose();

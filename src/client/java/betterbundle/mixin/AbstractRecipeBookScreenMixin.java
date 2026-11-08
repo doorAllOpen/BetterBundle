@@ -1,7 +1,5 @@
 package betterbundle.mixin;
 
-import betterbundle.gui.BundleCategory;
-import betterbundle.gui.BundlePanelInteraction;
 import betterbundle.gui.BundlePanelRenderer;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
@@ -31,21 +29,9 @@ public abstract class AbstractRecipeBookScreenMixin {
             return;
         }
 
-        // Category button
-        if (BundlePanelRenderer.isEffectivelyVisible()) {
-            BundleCategory cat = BundlePanelRenderer.getCategoryAt(mouseX, mouseY, self.leftPos, self.topPos, self.imageHeight);
-            if (cat != null) {
-                BundlePanelRenderer.currentCategory = cat;
-                BundlePanelRenderer.searchQuery = "";
-                BundlePanelRenderer.scrollToTop();
-                cir.setReturnValue(true);
-                return;
-            }
-        }
-
         // Search bar click
         if (BundlePanelRenderer.isEffectivelyVisible()
-                && BundlePanelRenderer.isInsideSearchBar(mouseX, mouseY, self.leftPos, self.topPos, self.imageHeight)) {
+                && BundlePanelRenderer.isInsideSearchBar(mouseX, mouseY, self.leftPos, self.topPos)) {
             BundlePanelRenderer.searchFocused = true;
             cir.setReturnValue(true);
             return;

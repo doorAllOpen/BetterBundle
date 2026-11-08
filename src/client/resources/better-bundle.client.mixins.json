@@ -6,6 +6,10 @@
         "InventoryScreenMixin",
         "AbstractContainerScreenMixin",
         "AbstractRecipeBookScreenMixin",
+        "ClientPacketListenerMixin",
+        "BundleItemMixin",
+        "ClientPacketSendMixin",
+        "ClientPacketReceiveMixin",
     ],
     "injectors": {
         "defaultRequire": 1

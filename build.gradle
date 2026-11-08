@@ -8,6 +8,10 @@ group = project.maven_group
 
 repositories {
     mavenCentral()
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/releases/"
+    }
 }
 
 configurations {
@@ -33,6 +37,10 @@ dependencies {
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    // Optional: exposes the config screen through Mod Menu when it is installed.
+    // Not bundled into the built jar; the user installs Mod Menu separately.
+    implementation "com.terraformersmc:modmenu:21.0.0"
 
     embed 'com.belerweb:pinyin4j:2.5.1'
 }
